@@ -10,9 +10,11 @@ import UIKit
 
 class TaskListTableViewController: UITableViewController {
 
+    var tasks = [Task]();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        createSampleData();
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,23 +26,38 @@ class TaskListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return tasks.count
     }
-
-    /*
+    
+    func createSampleData(){
+        let task1 = Task(content: "Walk the dog.");
+        let task2 = Task(content: "Practice new piano song.");
+        let task3 = Task(content: "Study for upcoming test.");
+        
+        tasks += [task1, task2, task3];
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath)
+        
+        guard let taskCell = cell as? TaskTableViewCell else{
+            print("Failed to cast to TaskTableViewCell");
+            fatalError();
+        };
+        
+        let task = tasks[indexPath.row];
+    
+        print("task contnet" + task.content);
+        taskCell.ContentLabel.text = task.content;
+        
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

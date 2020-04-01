@@ -6,16 +6,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Task List Table View Controller-->
         <scene sceneID="OPc-YC-1z6">
             <objects>
-                <tableViewController id="H2e-y5-iNB" sceneMemberID="viewController">
+                <tableViewController id="H2e-y5-iNB" customClass="TaskListTableViewController" customModule="NList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="evc-Xb-oro">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QLj-xA-b2v" customClass="TaskTableViewCell" customModule="NList" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTableViewCell" id="QLj-xA-b2v" customClass="TaskTableViewCell" customModule="NList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QLj-xA-b2v" id="1x8-88-Upw">
@@ -34,7 +34,7 @@
                                         <constraint firstItem="wKa-Lc-xje" firstAttribute="centerX" secondItem="1x8-88-Upw" secondAttribute="centerX" id="O4R-S5-dFm"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" identifier="todoItem"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TaskTableViewCell"/>
                                 <connections>
                                     <outlet property="ContentLabel" destination="wKa-Lc-xje" id="xdN-Or-4ub"/>
                                 </connections>
