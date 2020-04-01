@@ -41,20 +41,34 @@ class TaskListTableViewController: UITableViewController {
 
         view.backgroundColor = UIColor.systemGray6;
         let addButton = UIButton();
+        let sectionTitleLabel =  UILabel();
 
         addButton.tag = section;
         addButton.setImage(UIImage(named: "AddButtonSymbol"), for: UIControl.State.normal);
         addButton.addTarget(self,action:#selector(addButtonClicked),for:.touchUpInside)
-        
+        addButton.imageView?.contentMode = .scaleAspectFill;
+        addButton.contentVerticalAlignment = .fill
+        addButton.contentHorizontalAlignment = .fill
+
+
+        sectionTitleLabel.text = "Section Example 1";
         addButton.translatesAutoresizingMaskIntoConstraints = false;
+        sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false;
+        
+        
+        view.addSubview(sectionTitleLabel);
         view.addSubview(addButton);
         
         NSLayoutConstraint.activate([
-            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 10),
+            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             addButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            addButton.heightAnchor.constraint(equalToConstant: 50),
-            addButton.widthAnchor.constraint(equalToConstant: 50)
+            addButton.heightAnchor.constraint(equalToConstant: 30),
+            addButton.widthAnchor.constraint(equalToConstant: 30),
+            
+            sectionTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
+            sectionTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+
         ]);
         return  view;
         
@@ -63,7 +77,7 @@ class TaskListTableViewController: UITableViewController {
         return 61.0
     }
     @objc func addButtonClicked(sender:UIButton){
-        
+        print("Add button clicked");
     }
     func createSampleData(){
         let task1 = Task(content: "Walk the dog.");
