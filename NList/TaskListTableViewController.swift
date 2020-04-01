@@ -38,11 +38,11 @@ class TaskListTableViewController: UITableViewController {
                    viewForHeaderInSection section: Int) -> UIView?{
 //        tableView.frame.size.height = 2;
         let frame =  tableView.frame;
-        let view = UIView(frame: CGRect(x:0,  y:0, width: frame.size.width, height: frame.size.height+10));
+        let view = UIView(frame: CGRect(x:0,y:0,width: frame.width, height: 100));
+//        view.translatesAutoresizingMaskIntoConstraints = false;
 
         view.backgroundColor = UIColor.black;
-        let buttonWidth = 30;
-        let addButton = UIButton(frame: CGRect( x: Int(frame.width) -  buttonWidth - 5, y:0, width: buttonWidth, height:buttonWidth));
+        let addButton = UIButton();
 
         addButton.tag = section;
         addButton.setImage(UIImage(named: "AddButtonSymbol"), for: UIControl.State.normal);
@@ -50,21 +50,34 @@ class TaskListTableViewController: UITableViewController {
         addButton.translatesAutoresizingMaskIntoConstraints = false;
         view.addSubview(addButton);
         
+//        let  bottomCell = tableView.cellForRow(at: IndexPath(row: 0, section: section));
+//        if(bottomCell == nil){
+//            print("Found no bottom cell for section title!!!");
+//            return view;
+//        }
         NSLayoutConstraint.activate([
-              addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-              addButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-              addButton.heightAnchor.constraint(equalToConstant: 50),
-              addButton.widthAnchor.constraint(equalToConstant: 50)
-          ])
-       
+//            view.heightAnchor.constraint(equalToConstant: 50),
+//            view.widthAnchor.constraint(equalToConstant: frame.width),
+//            view.bottomAnchor.constraint(equalTo: bottomCell!.topAnchor),
+        ])
+        NSLayoutConstraint.activate([
+            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 10),
+            addButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            addButton.heightAnchor.constraint(equalToConstant: 50),
+            addButton.widthAnchor.constraint(equalToConstant: 50)
+        ]);
 
 //        NSLayoutConstraint(item: addButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0).isActive = true;
+        
         self.tableView.tableHeaderView = self.tableView.tableHeaderView;// this is to force it to update
 
         return  view;
         
     }
-    
+    public override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 61.0
+    }
     @objc func addButtonClicked(sender:UIButton){
         
     }
