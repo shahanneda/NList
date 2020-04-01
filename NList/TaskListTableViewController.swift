@@ -15,6 +15,7 @@ class TaskListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createSampleData();
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,7 +34,40 @@ class TaskListTableViewController: UITableViewController {
         
         return tasks.count
     }
+    override func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView?{
+//        tableView.frame.size.height = 2;
+        let frame =  tableView.frame;
+        let view = UIView(frame: CGRect(x:0,  y:0, width: frame.size.width, height: frame.size.height+10));
+
+        view.backgroundColor = UIColor.black;
+        let buttonWidth = 30;
+        let addButton = UIButton(frame: CGRect( x: Int(frame.width) -  buttonWidth - 5, y:0, width: buttonWidth, height:buttonWidth));
+
+        addButton.tag = section;
+        addButton.setImage(UIImage(named: "AddButtonSymbol"), for: UIControl.State.normal);
+        addButton.addTarget(self,action:#selector(addButtonClicked),for:.touchUpInside)
+        addButton.translatesAutoresizingMaskIntoConstraints = false;
+        view.addSubview(addButton);
+        
+        NSLayoutConstraint.activate([
+              addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+              addButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+              addButton.heightAnchor.constraint(equalToConstant: 50),
+              addButton.widthAnchor.constraint(equalToConstant: 50)
+          ])
+       
+
+//        NSLayoutConstraint(item: addButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0).isActive = true;
+        self.tableView.tableHeaderView = self.tableView.tableHeaderView;// this is to force it to update
+
+        return  view;
+        
+    }
     
+    @objc func addButtonClicked(sender:UIButton){
+        
+    }
     func createSampleData(){
         let task1 = Task(content: "Walk the dog.");
         let task2 = Task(content: "Practice new piano song.");
@@ -52,7 +86,7 @@ class TaskListTableViewController: UITableViewController {
         
         let task = tasks[indexPath.row];
     
-        print("task contnet" + task.content);
+        print("task content: " + task.content);
         taskCell.ContentLabel.text = task.content;
         
         
