@@ -26,9 +26,13 @@ class TaskListTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     public func addNewTask(withContent content : String){
+
+        tableView.beginUpdates();
         tasks += [Task(content: content)];
-        saveData();
-        self.tableView.reloadData();
+        self.tableView.insertRows(at: [IndexPath(row: tasks.count-1, section: 0)], with: .left)
+        tableView.endUpdates();
+        
+//        saveData();
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
