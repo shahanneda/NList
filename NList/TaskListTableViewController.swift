@@ -87,7 +87,7 @@ class TaskListTableViewController: UITableViewController {
         
     }
     public override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 61.0
+        return 61.0;
     }
     @objc func addButtonClicked(sender:UIButton){
         print("Add button clicked");
@@ -108,6 +108,7 @@ class TaskListTableViewController: UITableViewController {
         let task3 = Task(content: "Study for upcoming test.");
         
         tasks += [task1, task2, task3];
+        saveData();
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,6 +133,7 @@ class TaskListTableViewController: UITableViewController {
             print("index path.row = \(indexPath.row)");
             print(self.tasks);
             self.tasks.remove(at: indexPath.row);
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             self.saveData()
         }
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteContextItem]);
