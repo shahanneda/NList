@@ -15,6 +15,7 @@ class TaskListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createSampleData();
+        loadData();
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -26,12 +27,21 @@ class TaskListTableViewController: UITableViewController {
     // MARK: - Table view data source
     public func addNewTask(withContent content : String){
         tasks += [Task(content: content)];
+        saveData();
         self.tableView.reloadData();
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
+    func loadData(){
+        tasks = Task.getTasks();
+    }
+    
+    func saveData(){
+        Task.saveTasks(tasks: tasks);
+        self.tableView.reloadData();
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return tasks.count
