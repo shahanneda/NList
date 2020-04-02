@@ -68,6 +68,7 @@
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="TaskTableViewCell"/>
                                 <connections>
+                                    <outlet property="CheckMarkButton" destination="ID6-n1-fmz" id="aas-ff-JUE"/>
                                     <outlet property="ContentLabel" destination="wKa-Lc-xje" id="xdN-Or-4ub"/>
                                 </connections>
                             </tableViewCell>

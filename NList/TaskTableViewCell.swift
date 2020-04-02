@@ -12,30 +12,41 @@ class TaskTableViewCell: UITableViewCell {
     
 
     @IBOutlet weak var ContentLabel: UILabel!
-   
+    
+    @IBOutlet weak var CheckMarkButton: UIButton!
+    public var tableViewController : TaskListTableViewController?;
+    public var cellIndexPath : IndexPath?;
     
     @IBAction func CheckBoxTapped(_ sender: UIButton) {
+        tableViewController?.rowCheckMarkButtonClicked(at: cellIndexPath!)
+//        sender.isSelected = !sender.isSelected;
+    }
+    func SetCheckMarkedState(state : Bool){
         let animation = CATransition()
         animation.duration = 0.5
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         animation.type = CATransitionType.fade
+        CheckMarkButton.layer.add(animation, forKey: nil);
         
-        sender.layer.add(animation, forKey: nil);
-        if(!sender.isSelected){
+        if(!state){
             UIView.animate(withDuration: 0.2, animations: {
-                sender.setBackgroundImage(UIImage(named:"CheckMarkNotFilled"), for: .normal);
+                self.CheckMarkButton.setBackgroundImage(UIImage(named:"CheckMarkNotFilled"), for: .normal);
             })
         }else{
             UIView.animate(withDuration: 0.2, animations: {
-                sender.setBackgroundImage(UIImage(named:"CircleNotFilled"), for: .normal);
+                self.CheckMarkButton.setBackgroundImage(UIImage(named:"CircleNotFilled"), for: .normal);
             })
         }
-        sender.isSelected = !sender.isSelected;
     }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)));
+        self.addGestureRecognizer(tap);
+
+    }
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        // handling code
+        tableViewController?.rowCheckMarkButtonClicked(at: cellIndexPath!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -14,7 +14,7 @@ class TaskListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createSampleData();
+//        createSampleData();
         loadData();
         
         // Uncomment the following line to preserve selection between presentations
@@ -72,7 +72,7 @@ class TaskListTableViewController: UITableViewController {
         addButton.contentHorizontalAlignment = .fill
 
 
-        sectionTitleLabel.text = "ToDo List:";
+        sectionTitleLabel.text = "To Do List:";
         addButton.translatesAutoresizingMaskIntoConstraints = false;
         sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false;
         
@@ -119,6 +119,13 @@ class TaskListTableViewController: UITableViewController {
         saveData();
     }
     
+//    func checkmarkRow(at : IndexPath, state : Bool){
+//        tasks[at.row].isDone = state;
+//    }
+    func rowCheckMarkButtonClicked(at : IndexPath){
+        tasks[at.row].isDone = !tasks[at.row].isDone
+        saveData(withReload: true);
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath)
         
@@ -126,13 +133,15 @@ class TaskListTableViewController: UITableViewController {
             print("Failed to cast to TaskTableViewCell");
             fatalError();
         };
-        
+        taskCell.tableViewController = self;
+        taskCell.cellIndexPath = indexPath;
         
         let task = tasks[indexPath.row];
-    
-        print("task content: " + task.content);
+        
+        taskCell.SetCheckMarkedState(state: task.isDone)
         taskCell.ContentLabel.text = task.content;
 
+        print(task.content + ": " + (task.isDone ? "true" : "false" ));
         return cell
     }
 
