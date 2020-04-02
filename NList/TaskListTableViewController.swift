@@ -157,6 +157,16 @@ class TaskListTableViewController: UITableViewController {
         swipeActions.performsFirstActionWithFullSwipe = false;
         return swipeActions;
     }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+           let deleteContextItem = UIContextualAction(style: .normal, title: "✔️"){(contexualAction, view, boolValue) in
+            self.tasks[indexPath.row].isDone = !self.tasks[indexPath.row].isDone;
+            self.saveData(withReload: true);
+           }
+           let swipeActions = UISwipeActionsConfiguration(actions: [deleteContextItem]);
+           swipeActions.performsFirstActionWithFullSwipe = true;
+           return swipeActions;
+       }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
