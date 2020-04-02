@@ -24,7 +24,6 @@ class TaskListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    // MARK: - Table view data source
     public func addNewTask(withContent content : String){
 
         tableView.beginUpdates();
@@ -52,6 +51,9 @@ class TaskListTableViewController: UITableViewController {
         
         return tasks.count
     }
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil;
+    }
     override func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView?{
         
@@ -70,7 +72,7 @@ class TaskListTableViewController: UITableViewController {
         addButton.contentHorizontalAlignment = .fill
 
 
-        sectionTitleLabel.text = "Section Example 1";
+        sectionTitleLabel.text = "ToDo List:";
         addButton.translatesAutoresizingMaskIntoConstraints = false;
         sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false;
         
@@ -130,9 +132,7 @@ class TaskListTableViewController: UITableViewController {
     
         print("task content: " + task.content);
         taskCell.ContentLabel.text = task.content;
-        cell.accessoryType = .checkmark;
-        
-        
+
         return cell
     }
 
