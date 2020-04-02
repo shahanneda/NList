@@ -32,7 +32,7 @@ class TaskListTableViewController: UITableViewController {
         self.tableView.insertRows(at: [IndexPath(row: tasks.count-1, section: 0)], with: .left)
         tableView.endUpdates();
         
-//        saveData();
+        saveData(withReload: false);
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -42,9 +42,11 @@ class TaskListTableViewController: UITableViewController {
         tasks = Task.getTasks();
     }
     
-    func saveData(){
+    func saveData(withReload : Bool = true){
         Task.saveTasks(tasks: tasks);
-        self.tableView.reloadData();
+        if(withReload){
+            self.tableView.reloadData();
+        }
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
