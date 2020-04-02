@@ -9,8 +9,29 @@
 import UIKit
 
 class TaskTableViewCell: UITableViewCell {
+    
 
     @IBOutlet weak var ContentLabel: UILabel!
+   
+    
+    @IBAction func CheckBoxTapped(_ sender: UIButton) {
+        let animation = CATransition()
+        animation.duration = 0.5
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.type = CATransitionType.fade
+        
+        sender.layer.add(animation, forKey: nil);
+        if(!sender.isSelected){
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.setBackgroundImage(UIImage(named:"CheckMarkNotFilled"), for: .normal);
+            })
+        }else{
+            UIView.animate(withDuration: 0.2, animations: {
+                sender.setBackgroundImage(UIImage(named:"CircleNotFilled"), for: .normal);
+            })
+        }
+        sender.isSelected = !sender.isSelected;
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

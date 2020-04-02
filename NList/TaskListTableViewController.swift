@@ -125,10 +125,12 @@ class TaskListTableViewController: UITableViewController {
             fatalError();
         };
         
+        
         let task = tasks[indexPath.row];
     
         print("task content: " + task.content);
         taskCell.ContentLabel.text = task.content;
+        cell.accessoryType = .checkmark;
         
         
         return cell

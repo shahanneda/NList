@@ -10,10 +10,12 @@ import Foundation
 
 class Task : Codable{
     var content : String;
+    var isDone : Bool
     static let TASK_STORAGE_KEY = "NLIST-TASK-STORAGE";
     
     init(content : String) {
         self.content = content;
+        isDone = true;
     }
     
     public static func saveTasks(tasks : [Task] ){

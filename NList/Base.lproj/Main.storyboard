@@ -40,15 +40,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKa-Lc-xje">
-                                            <rect key="frame" x="166.5" y="11.5" width="42" height="20.5"/>
+                                            <rect key="frame" x="67" y="11.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID6-n1-fmz">
+                                            <rect key="frame" x="11" y="3.5" width="37" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ID6-n1-fmz" secondAttribute="height" multiplier="1:1" id="nve-Zp-uWa"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <state key="normal" backgroundImage="CircleNotFilled"/>
+                                            <connections>
+                                                <action selector="CheckBoxTapped:" destination="QLj-xA-b2v" eventType="touchUpInside" id="4hc-eA-9Cl"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="wKa-Lc-xje" firstAttribute="centerY" secondItem="1x8-88-Upw" secondAttribute="centerY" id="Hrp-Fk-Rpn"/>
-                                        <constraint firstItem="wKa-Lc-xje" firstAttribute="centerX" secondItem="1x8-88-Upw" secondAttribute="centerX" id="O4R-S5-dFm"/>
+                                        <constraint firstItem="ID6-n1-fmz" firstAttribute="leading" secondItem="1x8-88-Upw" secondAttribute="leading" constant="11" id="2iE-Ex-hhy"/>
+                                        <constraint firstItem="ID6-n1-fmz" firstAttribute="centerY" secondItem="1x8-88-Upw" secondAttribute="centerY" id="Egp-fy-XXG"/>
+                                        <constraint firstItem="wKa-Lc-xje" firstAttribute="leading" secondItem="1x8-88-Upw" secondAttribute="leading" constant="67" id="WMh-zV-F4h"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wKa-Lc-xje" secondAttribute="trailing" constant="20" symbolic="YES" id="jNH-by-Ita"/>
+                                        <constraint firstItem="wKa-Lc-xje" firstAttribute="leading" secondItem="ID6-n1-fmz" secondAttribute="trailing" constant="19" id="qKi-by-1ZU"/>
+                                        <constraint firstItem="wKa-Lc-xje" firstAttribute="centerY" secondItem="1x8-88-Upw" secondAttribute="centerY" id="u2X-lR-qzD"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="TaskTableViewCell"/>
@@ -66,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IMi-J7-vNI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193" y="155"/>
+            <point key="canvasLocation" x="192.80000000000001" y="154.27286356821591"/>
         </scene>
         <!--Add New Task View Controller-->
         <scene sceneID="t5y-wu-yh8">
@@ -104,4 +119,7 @@
             <point key="canvasLocation" x="884" y="154"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CircleNotFilled" width="17" height="17"/>
+    </resources>
 </document>
