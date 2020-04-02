@@ -24,9 +24,12 @@ class TaskListTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    public func addNewTask(withContent content : String){
+        tasks += [Task(content: content)];
+        self.tableView.reloadData();
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,9 +84,10 @@ class TaskListTableViewController: UITableViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let addPage = storyboard.instantiateViewController(withIdentifier: "addViewController");
+        let addPage = storyboard.instantiateViewController(withIdentifier: "addViewController") as! AddNewTaskViewController;
         let navigationController  = UINavigationController(rootViewController: addPage);
         
+        addPage.taskListTableViewController = self;
         navigationController.modalPresentationStyle = UIModalPresentationStyle.popover;
 //        navigationController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve;
         self.present(navigationController, animated: true, completion: nil  )
