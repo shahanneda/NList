@@ -78,6 +78,15 @@ class TaskListTableViewController: UITableViewController {
     }
     @objc func addButtonClicked(sender:UIButton){
         print("Add button clicked");
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let addPage = storyboard.instantiateViewController(withIdentifier: "addViewController");
+        let navigationController  = UINavigationController(rootViewController: addPage);
+        
+        navigationController.modalPresentationStyle = UIModalPresentationStyle.popover;
+//        navigationController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve;
+        self.present(navigationController, animated: true, completion: nil  )
     }
     func createSampleData(){
         let task1 = Task(content: "Walk the dog.");
